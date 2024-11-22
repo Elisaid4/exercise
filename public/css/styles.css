@@ -1,0 +1,79 @@
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #e92c2c;
+  
+}
+
+header {
+    background-color: #121218;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+main {
+    padding: 2rem;
+   
+    padding: 20px;
+    color: rgb(34, 28, 28);
+}
+
+.sur{ 
+   padding: 2rem;
+   float: left; 
+   color: rgb(17, 4, 4);
+   padding: 20px;
+   border-radius: 5px;
+}
+h1, h2 {
+    color: #e92c2c;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+form input, form textarea, form button {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+}
+
+.image{
+    display: flex;
+    justify-content: center; /* Centre les images horizontalement */
+    gap: 20px; /* Espacement entre les images */
+    
+}
+
+img {
+    max-width: 100%; /* Adapte les images à leur conteneur */
+    height: auto; /* Conserve le ratio de l'image */
+    border-radius: 10px; /* Arrondi les coins de l'image */
+    display: block; /* Évite les espaces blancs autour des images */
+}
+
+figcaption {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #555;
+}
+
+.images{
+    display: flex;
+    justify-content: center; /* Centre les images horizontalement */
+    gap: 20px; /* Espacement entre les images */
+    
+}
