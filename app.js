@@ -1,13 +1,44 @@
 
 
 
+
+
+
 //on cree l'application 
+
+//midlware de connection a la bese de donne 
+
+
+//pool strategie de connection
 const express = require("express");
 // Déclaration de l'application express
+const myConnection = require('express-myconnection');
+const mysql2 = require('mysql2');
 
-const fs = require("fs");
+
+
 
 const app = express();
+
+
+
+
+
+
+
+const optionConnection = {
+
+    host : 'localhost',
+    user : 'root',
+    password : 'Melinecarlose@2',
+    database : 'restaurent',
+    port : 3306,
+};
+
+app.use(myConnection(mysql2,optionConnection, "pool"));
+app.use(express.urlencoded({extended: false}));
+
+
 
 
 // lle moteur de l'ecteur
@@ -29,6 +60,40 @@ app.use(express.static('public'))
    //res.end();
 //});
 
+// app.get("/accueil", (req, res) => {
+//     req.getConnection((erreur, connection) => {
+//         if (erreur) {
+//             console.log("Erreur de connexion :", erreur);
+            
+//         } 
+//         else{
+//                 connection.query("SELECT * FROM plat", (err, resultat) => {
+//             if (err) {
+//                 console.log("Erreur de requête :", err);
+                
+//             }
+//             else {
+//                 console.log("Résultat :", resultat);
+//             res.render("index", { resultat });
+//             }
+            
+//         });
+            
+//         }
+        
+       
+//     });
+// });
+
+app.post("/plat",(req, res) => {
+  
+    res.render("formaplat");
+});
+
+app.get('/',(req, res) => {
+   
+    res.render('index')
+});
 
 
 // la parti acceuill
@@ -46,42 +111,17 @@ app.get('/equipe', (req, res) => {
 // la parti Menu
 
 
-
+app.get('/contact', (req, res) => {
+   
+    res.render('contact')
+});
 //la partie Equipe 
 
-app.get("/equipe", (req, res) => {
-    fs.readFile("equipe.html", (err, data) => {
 
-        if(err){
-            res.writeHead(404);
-            res.write("le fichier est introuvable.");
-        } else{
-            res.writeHead(200, {
-                "content-type":"text/html"});
-                res.write(data);
-        }
-    
-    res.end();
-    });
-});
+
 
 // la partie Contact  
 
-app.get("/contact", (req, res) => {
-    fs.readFile("contact.html", (err, data) => {
-
-        if(err){
-            res.writeHead(404);
-            res.write("le fichier est introuvable.");
-        } else{
-            res.writeHead(200, {
-                "content-type":"text/html"});
-                res.write(data);
-        }
-    
-    res.end();
-    });
-});
 
 
 
