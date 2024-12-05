@@ -9,16 +9,25 @@
     <title>Menu - Restaurant</title>
 </head>
 <body>
+
     <header>
         <h1>Notre Menu</h1>
         <nav>
-            <a href="/">Accueil</a>
-            <a href="/menu">Menu</a>
-            <a href="/team">Équipe</a>
-            <a href="/contact">Contact</a>
+            <%- include('partials/navbar') %>
         </nav>
     </header>
 
+    <section>
+        <section>
+            <%- thes.forEach(t => { %> 
+                <h3><%= t.nom %></h3>
+                <span><%= t.prix %></span><br>
+                <input type="button" value="supprimer" onclick="">
+                <input type="button" value="modifier" onclick="remplirDoonnees('<%= t.id %>', '<%= t.nom %>', '<%= t.prix %>')">
+            <% }) %>
+        </section>
+        
+    <br>
     <br>
 
     <div class="sur">
@@ -58,5 +67,27 @@
         <img src="Steack.jpg" alt="">
         <figcaption>Steack Frites :15€.</figcaption>
     </div>
+    <br>
+
+    <script>
+        function remplirDoonees(id, nom, prix) {
+            document.querySelector("#id").value = id;
+            document.querySelector("#nomplat").value = nom;
+            document.querySelector("#prix").value = prix;
+        }
+    </script>
+     
+     
+    <div>
+        <form action="/plat" method="post">
+        <label for="nomplat">Nom du plat:</label><br>
+        <input type="text" name="nomplat" id="nomplat"><br>
+        <label for="prixplat">Prix:</label><br>
+        <input type="number" id="prix" name="prix"><br><br>
+        <input type="submit" value="Enregistrement">
+
+      </form>
+
 </body>
+<%- include('partials/footer') %>
 </html>

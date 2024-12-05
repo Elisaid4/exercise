@@ -11,6 +11,7 @@
 
 //pool strategie de connection
 const express = require("express");
+
 // Déclaration de l'application express
 const myConnection = require('express-myconnection');
 const mysql2 = require('mysql2');
@@ -46,7 +47,7 @@ app.set('view engine', 'ejs');
 // savoir la ou se setue les vues qui s'affiche sur le navigateur 
 app.set("views", "./views")
 
-app.use(express.static('public')) 
+app.use(express.static('public'));
 
 // Middleware pour parser le JSON dans les requêtes
 //app.use(express.json());
@@ -85,15 +86,46 @@ app.use(express.static('public'))
 //     });
 // });
 
-app.post("/plat",(req, res) => {
-  
-    res.render("formaplat");
+app.get('/menu', (req, res) => {
+   
+    res.render('menu')
 });
 
-app.get('/',(req, res) => {
-   
-    res.render('index')
+
+app.post("/plat",(req, res) => {
+    console.log("corps requete body: ",req.body);
+    console.log("corps requete nom: " ,req.body.nom);
+    console.log("corps requete prix: " ,req.body.prix);
+
+    let nomPlat = req.body.nom;
+    let prixPlat = req.body.prix;
+
+    req.getConnection((erreur, connection) => {
+        if(erreur) {
+            console.log(erreur); 
+        }else {
+            connection.query("INSERT INTO plat (nom, prix) VALUES(?,?)",[nomPlat,prixPlat], (err, resultat) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log("Insertion reussie ==) ");
+                    res.status(300).redirect("menu");
+                }
+            
+            
+            });
+        }
+      
+    });
 });
+  
+   // res.render("formaplat");
+//});
+
+//app.get('/',(req, res) => {
+   
+  //  res.render('index')
+//});
 
 
 // la parti acceuill
@@ -101,6 +133,8 @@ app.get('/menu', (req, res) => {
    
     res.render('menu')
 });
+
+
 
 // la parti acceuill
 app.get('/equipe', (req, res) => {

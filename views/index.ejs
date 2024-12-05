@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,19 +11,27 @@
         <header>
             <h1>Bienvenue dans notre Restaurant Kité</h1>
             <nav>
-                <a href="/">Accueil</a>
-                <a href="menu.html">Menu</a>
-                <a href="equipe.html">Équipe</a>
-                <a href="contact.html">Contact</a>
+                <%- include('partials/navbar') %>
             </nav>
         </header>
+        <ul>
+            <% resultat.forEach(p => { %>
+                <li><%= p.nom %> - <%= p.prix %> €</li>
+            <% }) %>
+        </ul>
+        .30
         <main>
             <h2>Découvrez nos délicieux plats et notre équipe passionnée !</h2>
             <p>Nous vous offrons une expérience culinaire inoubliable.</p>
             
              
         </main>
-    
+      
+
+    </div>
+        <%- include('partials/footer') %>
+
+
 
 </body>
 </html>
